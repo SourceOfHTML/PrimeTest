@@ -1,16 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
-long long power(int *number, long long *power);
+long long power(int *number, long *power);
 int prime(long long *number);
 int primality(long long *number, int *witnesses, int array_size);
 
-int main()
+int main(int argc, char **argv)
 {
-	printf("\nGive us a number to calculate the primality of: ");
 	long long input_number;
-	scanf("%d", &input_number);
-	getchar();
+	if (argc < 2)
+	{
+		printf("Give us a number, bitch >:(\n");
+		scanf("%lld", &input_number);
+		getchar();
+	}
+	else
+	{
+		input_number = atoll(argv[1]);
+	}
 
 	if ((input_number & 1) == 0)
 	{
@@ -19,17 +27,17 @@ int main()
 	}
 	if (input_number < 0)
 	{
-		printf("Negative numbers not allowed, sorry.");
+		printf("Negative numbers not allowed, sorry.\n");
 		return 0;
 	}
 
 	if (!prime(&input_number))
 	{
-		printf("Sorry, not a prime, or failed moemoroy aclooolcatuibn, OR too large.");
+		printf("Sorry, not a prime.\n");
 		return 0;
 	}
-	
-	printf("Yes, %d IS a prime number!", input_number);
+
+	printf("Yes, %d IS a prime number!\n", input_number);
 	return 0;
 }
 
@@ -43,7 +51,7 @@ int prime(long long *number)
 	 * if n > 3,825,123,056,546,413,051, it is enough to test a = 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, and 37;
 	 * Note that the last statement only works because long longs are 64 bit,
 	 * If we had more range, then the statement would be false.
-	 * 
+	 *
 	 * This program only goes up to the three billion mark, because I cannot be arsed
 	 */
 	if ((*number) < 1373653)
@@ -84,7 +92,7 @@ int primality(long long *number, int *witnesses, int array_size)
 	}
 	for (int i = 0; i < array_size; i++)
 	{
-		if(witnesses[i] < defendant)
+		if (witnesses[i] < defendant)
 		{
 			long long mod = power(witnesses + i, &defendant) % (*number);
 			for (int j; j < powers_of_two; j++)
@@ -100,7 +108,7 @@ int primality(long long *number, int *witnesses, int array_size)
 	return 1;
 }
 
-long long power(int *number, long long *power)
+long long power(int *number, long *power)
 {
 	long long result = 1;
 	while ((*power) >= 1)
