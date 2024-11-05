@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 	long long input_number;
 	if (argc < 2)
 	{
-		printf("Give us a number, bitch >:(\n");
+		printf("Give us a number >:(\n");
 		scanf("%lld", &input_number);
 		getchar();
 	}
