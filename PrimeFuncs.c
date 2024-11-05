@@ -1,4 +1,5 @@
 #include "PrimeFuncs.h"
+#include <stdio.h>
 
 int prime(long long *number)
 {
@@ -54,7 +55,7 @@ int primality(long long *number, int *witnesses, int array_size)
 		if (witnesses[i] < defendant)
 		{
 			long long mod = power(witnesses + i, &defendant) % (*number);
-			for (int j; j < powers_of_two; j++)
+			for (int j = 0; j < powers_of_two; j++)
 			{
 				mod = (mod * mod) % (*number);
 			}
