@@ -34,6 +34,6 @@ int main(int argc, char **argv)
 		return 0;
 	}
 
-	printf("Yes, %d IS a prime number!\n", input_number);
+	printf("Yes, %lld IS a prime number!\n", input_number);
 	return 0;
 }
